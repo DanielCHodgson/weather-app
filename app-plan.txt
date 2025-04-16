@@ -1,0 +1,33 @@
+weather-app/
+│
+├── index.html
+├── main.js
+├── styles.css
+├── assets/
+│   └── icons/, images/, etc.
+├── components/
+│   ├── header/
+│   │   ├── header.html
+│   │   ├── header.css
+│   │   └── header.js
+│   │
+│   ├── search/
+│   │   ├── search.html
+│   │   ├── search.css
+│   │   └── search.js
+│   │
+│   ├── weather-display/
+│   │   ├── weather-display.html
+│   │   ├── weather-display.css
+│   │   └── weather-display.js
+│   │
+│   └── footer/
+│       ├── footer.html
+│       ├── footer.css
+│       └── footer.js
+│
+├── services/
+│   └── weatherAPI.js
+│
+└── utils/
+    └── helpers.js
