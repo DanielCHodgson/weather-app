@@ -1,4 +1,4 @@
-weather-app/
+weather-app/src
 │
 ├── index.html
 ├── main.js
@@ -16,10 +16,10 @@ weather-app/
 │   │   ├── search.css
 │   │   └── search.js
 │   │
-│   ├── weather-display/
-│   │   ├── weather-display.html
-│   │   ├── weather-display.css
-│   │   └── weather-display.js
+│   ├── weather-dashboard/
+│   │   ├── weather-dashboard.html
+│   │   ├── weather-dashboard.css
+│   │   └── weather-dashboard.js
 │   │
 │   └── footer/
 │       ├── footer.html
