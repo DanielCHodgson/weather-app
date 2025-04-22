@@ -15,12 +15,12 @@ body {
   height: 100%;
   display: grid;
   grid-template: auto 1fr / 100%;
+  background: #2a7b9b;
+  background: linear-gradient(
+    180deg,
+    rgba(42, 123, 155, 1) 0%,
+    rgba(87, 199, 133, 1) 50%,
+    rgba(237, 221, 83, 1) 100%
+  );
 }
 
-
-.header {
-  background-color: var(--primary-light);
-}
-.content {
-  background-color: var(--secondary-light);
-}

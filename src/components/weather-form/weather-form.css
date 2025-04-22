@@ -1,0 +1,56 @@
+form.weather-form {
+  padding: 1rem;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  gap: 1rem;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+form.weather-form form-group {
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+form.weather-form form-group label {
+  font-weight: bold;
+  color: #ffffff;
+}
+
+form.weather-form input,
+form.weather-form select {
+  width: 100%;
+  height: 1.5rem;
+  padding: 0 0.3rem;
+  border-radius: 4px;
+  outline: none;
+  appearance: none;
+  border: none;
+}
+
+form.weather-form input.invalid,
+form.weather-form select.invalid {
+  outline: 2px solid red;
+}
+
+form.weather-form #submit {
+  width: auto;
+  height: 2rem;
+  border: none;
+  border-radius: 4px;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.error-msg {
+  color: red;
+  border-radius: 4px;
+  padding: 0.1rem;
+  position: absolute;
+  bottom: -1.5rem;
+  right: 0;
+}

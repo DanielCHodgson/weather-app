@@ -1,15 +1,15 @@
+import html from "./weather-dashboard.html";
 import  './weather-dashboard.css';
 
 export default class WeatherDashboard {
   #container;
+  #api
 
   constructor(container) {
     this.#container = container;
-    this.#loadHTML();
+    this.#container.innerHTML = html;
+
   }
 
-  async #loadHTML() {
-    const res = await fetch('components/weather-dashboard/weather-dashboard.html?cacheBust=' + Date.now());
-    this.#container.innerHTML = await res.text();
-  }
+ 
 }

@@ -1,0 +1,30 @@
+<form class="weather-form">
+    <form-group>
+      <select id="country" name="country" required>
+        <option value="">Select a country</option>
+        <option value="UK">United Kingdom</option>
+        <option value="US">United States</option>
+        <option value="CA">Canada</option>
+        <option value="AU">Australia</option>
+      </select>
+      <p class="error-msg"></p>
+    </form-group>
+    <form-group>
+      <input id="city" type="text" placeholder="Enter a city" required>
+    </form-group>
+    <!--
+    <form-group>
+      <label for="postcode">Postcode:</label>
+      <input
+        type="text"
+        id="postcode"
+        name="postcode"
+        pattern="^[A-Z]{1,2}\d[A-Z\d]? ?\d[A-Z]{2}$"
+        title="Enter a valid UK postcode (e.g., SW1A 1AA)"
+        required
+      />
+      <p class="error-msg"></p>
+    </form-group>
+  -->
+    <button type="submit" id="submit">Submit</button>
+  </form>
