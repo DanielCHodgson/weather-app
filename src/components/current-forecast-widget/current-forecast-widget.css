@@ -23,26 +23,20 @@
 }
 
 .daily-forecast .temperature {
-
-   text-align: center;
- 
+  text-align: center;
 }
 .daily-forecast .daylight {
-
-    display: grid;
-    grid-template-rows: 50% 50%;
- 
-}
-
-.daily-forecast .daylight > * {
-
-   display: flex;
-   flex-direction: column;
-   text-align: center;
- 
+  display: grid;
+  grid-template-rows: 50% 50%;
 }
 
 
+.daily-forecast .sunrise,
+.daily-forecast .sunset {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 
 .daily-forecast .conditions {
   width: 100%;
