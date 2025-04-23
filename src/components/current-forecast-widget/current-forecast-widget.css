@@ -26,17 +26,38 @@
 .daily-forecast .temperature {
   text-align: center;
 }
-.daily-forecast .daylight {
-  display: grid;
-  grid-template-rows: 50% 50%;
+
+.daily-forecast .temperature .current {
+  font-size: clamp(3rem, 8vw, 5rem);
+  font-weight: bold;
+  line-height: 5rem;
+  padding-top: 1rem;
+}
+.daily-forecast .temperature .feels-like {
+  font-size: clamp(1.1rem, 2vw, 2rem);
 }
 
+.daily-forecast .temperature svg {
+  width: 50%;
+}
+
+.daily-forecast .daylight {
+
+  display: grid;
+  grid-template-rows: 50% 50%;
+  gap: 0.5rem;
+}
 
 .daily-forecast .sunrise,
 .daily-forecast .sunset {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.daily-forecast .sunrise svg,
+.daily-forecast .sunset svg {
+  height: 100%;
 }
 
 .daily-forecast .conditions {
