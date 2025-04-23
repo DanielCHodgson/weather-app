@@ -1,0 +1,62 @@
+.daily-forecast {
+  width: 600px;
+  height: 400px;
+  background-color: rgba(255, 255, 255, 0.5);
+  border-radius: 6px;
+  font-family: "Roboto", Arial, Helvetica, sans-serif;
+
+  display: grid;
+  grid-template-columns: 1fr 1fr auto;
+  grid-template-rows: 100%;
+  gap: 1rem;
+  color: #ffffff;
+}
+
+.daily-forecast svg {
+  height: auto;
+  fill: #ffffff;
+}
+
+.daily-forecast .left {
+  display: grid;
+  grid-template-rows: 50% 50%;
+}
+
+.daily-forecast .temperature {
+
+   text-align: center;
+ 
+}
+.daily-forecast .daylight {
+
+    display: grid;
+    grid-template-rows: 50% 50%;
+ 
+}
+
+.daily-forecast .daylight > * {
+
+   display: flex;
+   flex-direction: column;
+   text-align: center;
+ 
+}
+
+
+
+.daily-forecast .conditions {
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  display: grid;
+  grid-template-rows: 50% 50%;
+  grid-template-columns: 1fr 1fr;
+  place-items: center;
+  gap: 1rem;
+}
+
+.daily-forecast .conditions > * {
+  display: grid;
+  place-items: center;
+  gap: 0.2rem;
+}

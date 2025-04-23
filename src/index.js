@@ -5,7 +5,6 @@ import "./styles/reset-modern.css";
 import "./styles/styles.css";
 
 const api = new weatherAPI();
-api.getWeatherDataForLocation('London,UK');
 
 new Nav(document.querySelector(".header"));
-new WeatherDashboard(document.querySelector(".content"));
+new WeatherDashboard(document.querySelector(".content"), api);
