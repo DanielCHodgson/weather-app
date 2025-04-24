@@ -2,6 +2,7 @@ import htmlString from "./current-forecast-widget.html";
 import "./current-forecast-widget.css";
 import DomUtility from "../../utilities/DomUtility";
 import WeatherIcons from "../../res/weather-icons";
+import WeatherIconPicker from "../../utilities/WeatherIconPicker";
 
 export default class DailyForecastWidget {
   #container;
@@ -34,6 +35,7 @@ export default class DailyForecastWidget {
       wind: this.#element.querySelector(".wind"),
       pressure: this.#element.querySelector(".pressure"),
       uv: this.#element.querySelector(".uv"),
+      icon: this.#element.querySelector(".icon"),
     };
   }
 
@@ -87,10 +89,15 @@ export default class DailyForecastWidget {
       this.#weatherData.uvindex;
   }
 
+  setWeatherIcon() {
+    this.#fields.icon.replaceWith(DomUtility.renderSvg(WeatherIconPicker.getIcon(this.#weatherData.datetime, this.#weatherData.cloudcover, this.#weatherData.precip)));
+  }
+
   setData() {
     this.setTemperatureData();
     this.setSunsetData();
     this.setConditionsData();
+    this.setWeatherIcon();
   }
 
   render() {
