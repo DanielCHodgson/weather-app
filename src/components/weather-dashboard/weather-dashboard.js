@@ -1,21 +1,22 @@
 import htmlString from "./weather-dashboard.html";
 import  './weather-dashboard.css';
-import DailyForecastWidget from "../current-forecast-widget/current-forecast-widget";
+import CurrentForecastWidget from "../current-forecast-widget/current-forecast-widget";
 import DomUtility from "../../utilities/DomUtility";
+import WeatherAPI from "../../services/weatherAPI";
 
 export default class WeatherDashboard {
   #container;
   #element;
   #weatherAPI;
-  #dailyForecastWidget;
+  #currentForecastWidget;
 
 
-  constructor(container, weatherAPI) {
+  constructor(container) {
     this.#container = container;
     this.#element = DomUtility.stringToHTML(htmlString);
-    this.#weatherAPI = weatherAPI;
+    this.#weatherAPI = new WeatherAPI();
     (async () => {
-      this.#dailyForecastWidget = await DailyForecastWidget.create(this.#element, weatherAPI);
+      this.#currentForecastWidget = await CurrentForecastWidget.create(this.#element, this.#weatherAPI, "Sheffield,UK");
     })();
     this.render();
   }

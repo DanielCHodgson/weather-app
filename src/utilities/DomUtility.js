@@ -1,3 +1,5 @@
+const iconContext = require.context('../res/weather-icons/animated', false, /\.svg$/);
+
 export default class DomUtility {
   static stringToHTML(string) {
     if (typeof string !== "string" || string.trim() === "") {
@@ -23,4 +25,20 @@ export default class DomUtility {
     tempDiv.innerHTML = svgString;
     return tempDiv.firstChild;
   }
+
+  static loadAnimatedWeatherIcon(name) {
+    const filename = `./${name}.svg`;
+
+  
+    if (!iconContext.keys().includes(filename)) {
+      throw new Error(`Icon "${name}" not found in assets/icons.`);
+    }
+
+    const iconSrc = iconContext(filename);
+    const img = document.createElement("img");
+    img.src = iconSrc;
+    return img;
+  }
+
 }
+

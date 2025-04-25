@@ -2,9 +2,8 @@ import htmlString from "./current-forecast-widget.html";
 import "./current-forecast-widget.css";
 import DomUtility from "../../utilities/DomUtility";
 import WeatherIcons from "../../res/weather-icons";
-import WeatherIconPicker from "../../utilities/WeatherIconPicker";
 
-export default class DailyForecastWidget {
+export default class CurrentForecastWidget {
   #container;
   #element;
   #weatherData;
@@ -21,9 +20,9 @@ export default class DailyForecastWidget {
     this.render();
   }
 
-  static async create(container, weatherAPI) {
-    const weatherData = await weatherAPI.getDailyForecast("London,UK");
-    return new DailyForecastWidget(container, weatherData);
+  static async create(container, weatherAPI, location) {
+    const weatherData = await weatherAPI.getDailyForecast(location);
+    return new CurrentForecastWidget(container, weatherData, location);
   }
 
   cacheFields() {
@@ -36,6 +35,7 @@ export default class DailyForecastWidget {
       pressure: this.#element.querySelector(".pressure"),
       uv: this.#element.querySelector(".uv"),
       icon: this.#element.querySelector(".icon"),
+      description: this.#element.querySelector(".description"),
     };
   }
 
@@ -87,10 +87,12 @@ export default class DailyForecastWidget {
 
     this.#fields.uv.querySelector(".value").textContent =
       this.#weatherData.uvindex;
+
+    this.#fields.description.textContent = this.#weatherData.conditions;
   }
 
   setWeatherIcon() {
-    this.#fields.icon.replaceWith(DomUtility.renderSvg(WeatherIconPicker.getIcon(this.#weatherData.datetime, this.#weatherData.cloudcover, this.#weatherData.precip)));
+    this.#fields.icon.querySelector("img").replaceWith(DomUtility.loadAnimatedWeatherIcon(`${this.#weatherData.icon}`));
   }
 
   setData() {
