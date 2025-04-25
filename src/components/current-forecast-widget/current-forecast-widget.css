@@ -27,10 +27,13 @@
 }
 
 .daily-forecast .temperature .current {
+  padding-top: 1rem;
   font-size: clamp(3rem, 8vw, 4rem);
   font-weight: bold;
+  background: linear-gradient(90deg, #ffffff, #dfdfdf);
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
   line-height: 4rem;
-  padding-top: 1rem;
 }
 .daily-forecast .temperature .feels-like {
   font-size: 1.3rem;
