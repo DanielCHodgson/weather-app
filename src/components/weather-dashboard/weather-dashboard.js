@@ -10,15 +10,23 @@ export default class WeatherDashboard {
   #weatherAPI;
   #currentForecastWidget;
 
-
   constructor(container) {
     this.#container = container;
     this.#element = DomUtility.stringToHTML(htmlString);
     this.#weatherAPI = new WeatherAPI();
-    (async () => {
-      this.#currentForecastWidget = await CurrentForecastWidget.create(this.#element, this.#weatherAPI, "Sheffield,UK");
-    })();
+  
     this.render();
+  
+    (async () => {
+      try {
+        this.#currentForecastWidget = await CurrentForecastWidget.create(this.#element, this.#weatherAPI, "Sheffield,UK");
+
+        const weatherData = await this.#weatherAPI.getFortnightData("Sheffield,UK");
+        console.log(weatherData);
+      } catch (error) {
+        console.error("Initialization error:", error);
+      }
+    })();
   }
 
 
