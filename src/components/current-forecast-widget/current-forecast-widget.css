@@ -27,10 +27,13 @@
 }
 
 .daily-forecast .temperature .current {
+  padding-top: 1rem;
   font-size: clamp(3rem, 8vw, 4rem);
   font-weight: bold;
+  background: linear-gradient(90deg, #ffffff, #dfdfdf);
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
   line-height: 4rem;
-  padding-top: 1rem;
 }
 .daily-forecast .temperature .feels-like {
   font-size: 1.3rem;
@@ -77,14 +80,30 @@
   place-items: center;
 }
 
-.mid {
-  display: grid;
-
-  grid-template-columns: 1fr;
-  grid-template-rows: 1fr;
-  place-items: center;
+.daily-forecast .mid {
+  min-width: 125px;
 }
 
-.daily-forecast .mid svg {
+.daily-forecast .icon {
   width: 100%;
+  height: 100%;
+  display: grid;
+  grid-template-rows: 1fr auto;
+  grid-template-columns: 100%;
+  place-items: center;
+  text-align: center;
+  position: relative;
+}
+
+.daily-forecast .mid img {
+  width: 100%;
+  margin: auto;
+  position: absolute;
+}
+
+.daily-forecast .description {
+  font-size: 1.5rem;
+  font-weight: bold;
+  position: absolute;
+  bottom: 15%;
 }

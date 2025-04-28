@@ -1,13 +1,19 @@
 import htmlString from "./weather-dashboard.html";
+<<<<<<< HEAD
 import "./weather-dashboard.css";
 import DailyForecastWidget from "../current-forecast-widget/current-forecast-widget";
+=======
+import  './weather-dashboard.css';
+import CurrentForecastWidget from "../current-forecast-widget/current-forecast-widget";
+>>>>>>> cee14f74b5b3cf23b39468a26074aa88a8ffa608
 import DomUtility from "../../utilities/DomUtility";
+import WeatherAPI from "../../services/weatherAPI";
 
 export default class WeatherDashboard {
   #container;
   #element;
   #weatherAPI;
-  #dailyForecastWidget;
+  #currentForecastWidget;
 
   constructor(container, weatherAPI) {
     this.#container = container;
@@ -21,6 +27,17 @@ export default class WeatherDashboard {
     })();
 
     this.render();
+  
+    (async () => {
+      try {
+        this.#currentForecastWidget = await CurrentForecastWidget.create(this.#element, this.#weatherAPI, "Sheffield,UK");
+
+        const weatherData = await this.#weatherAPI.getFortnightData("Sheffield,UK");
+        console.log(weatherData);
+      } catch (error) {
+        console.error("Initialization error:", error);
+      }
+    })();
   }
 
   render() {

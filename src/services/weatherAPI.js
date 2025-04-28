@@ -5,11 +5,11 @@ export default class WeatherAPI {
     this.#apiKey = "G68GFGKVW4WNQHG4WESJWAUKV";
   }
 
-  async getWeatherDataForLocation(location) {
+  async getWeatherData(location) {
     try {
       const response = await fetch(
         `https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${location}?key=${this.#apiKey}`,
-        { mode: "cors" }
+        { mode: "cors" },
       );
 
       if (!response.ok) {
@@ -24,8 +24,18 @@ export default class WeatherAPI {
     }
   }
 
+  async getAllData(location) {
+    const data = await this.getWeatherData(location);
+    return data;
+  }
+
+  async getFortnightData(location) {
+    const data = await this.getWeatherData(location);
+    return data.days;
+  }
+
   async getDailyForecast(location) {
-    const data = await this.getWeatherDataForLocation(location);
+    const data = await this.getWeatherData(location);
     console.log(data.currentConditions);
     return data.currentConditions;
   }
