@@ -1,6 +1,7 @@
 import html from "./weather-form.html";
 import "./weather-form.css";
 import FormValidator from "../../services/FormValidator";
+import DomUtility from "../../utilities/DomUtility";
 
 export default class WeatherForm {
   #container;
@@ -10,11 +11,11 @@ export default class WeatherForm {
 
   constructor(container) {
     this.#container = container;
-    this.#container.innerHTML = html;
-    this.#element = this.#container;
+    this.#element = DomUtility.stringToHTML(html);
     this.#fields = this.#cacheFields();
     this.#submit = this.#element.querySelector("#submit");
     this.#bindEvents();
+    this.render();
   }
 
   #cacheFields() {
@@ -59,5 +60,10 @@ export default class WeatherForm {
     } else {
       console.log("Invalid fields!");
     }
+  }
+
+
+  render() {
+    this.#container.appendChild(this.#element);
   }
 }

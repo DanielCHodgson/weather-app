@@ -1,10 +1,11 @@
-import weatherAPI from "./services/weatherAPI";
+import weatherAPI from "./services/WeatherAPI";
 import WeatherDashboard from "./components/weather-dashboard/weather-dashboard";
-import Nav from "./components/header/header";
+import Header from "./components/header/header";
 import "./styles/reset-modern.css";
 import "./styles/styles.css";
+import GeolocationAPI from "./services/LocationService";
 
+await GeolocationAPI.fetchLocation();
 const api = new weatherAPI();
-
-new Nav(document.querySelector(".header"));
-new WeatherDashboard(document.querySelector(".content"), api);
+const dashboard = new WeatherDashboard(document.querySelector(".content"), api);
+new Header(dashboard, document.querySelector(".header"));
