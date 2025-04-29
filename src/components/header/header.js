@@ -18,7 +18,7 @@ export default class Header {
     this.#weatherForm = new WeatherForm(this.#element);
     this.#toggleSwitch = new ToggleSwitch(
       this.#element,
-      `°${this.#dashboard.getDegreesUnit()}`,
+      //`°${this.#dashboard.getDegreesUnit()}`,
     );
     this.render();
   }
