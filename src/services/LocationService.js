@@ -15,17 +15,13 @@ export default class GeolocationAPI {
       const latitude = position.coords.latitude;
       const longitude = position.coords.longitude;
 
-      console.log("Latitude:", latitude);
-      console.log("Longitude:", longitude);
-
       const locationData = {
         latitude,
         longitude,
-        timestamp: new Date().toISOString()
+        timestamp: new Date().toISOString(),
       };
 
-      this.saveLocation(locationData);
-
+      return locationData;
     } catch (error) {
       console.error("Error getting location:", error.message);
     }
@@ -33,7 +29,6 @@ export default class GeolocationAPI {
 
   static saveLocation(locationData) {
     localStorage.setItem("userLocation", JSON.stringify(locationData));
-    console.log("Location saved to localStorage.");
   }
 
   static getSavedLocation() {

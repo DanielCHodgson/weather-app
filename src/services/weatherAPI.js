@@ -23,20 +23,4 @@ export default class WeatherAPI {
       throw error;
     }
   }
-
-  async getAllData(location) {
-    const data = await this.getWeatherData(location);
-    return data;
-  }
-
-  async getFortnightData(location) {
-    const data = await this.getWeatherData(location);
-    return data.days;
-  }
-
-  async getDailyForecast(location) {
-    const data = await this.getWeatherData(location);
-    console.log(data.currentConditions);
-    return data.currentConditions;
-  }
 }

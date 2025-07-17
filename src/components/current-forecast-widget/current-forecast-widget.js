@@ -11,18 +11,13 @@ export default class CurrentForecastWidget {
   #degreesUnit = 'F';
   
 
-  constructor(container, weatherData) {
+  constructor(container, dailyWeatherData) {
     this.#container = container;
     this.#element = DomUtility.stringToHTML(htmlString);
-    this.#weatherData = weatherData;
     this.#fields = this.cacheFields() || {};
+    this.#weatherData = dailyWeatherData;
     this.setData();
     this.render();
-  }
-
-  static async create(container, weatherAPI, location) {
-    const weatherData = await weatherAPI.getDailyForecast(location);
-    return new CurrentForecastWidget(container, weatherData, location);
   }
 
   cacheFields() {
