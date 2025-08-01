@@ -2,13 +2,15 @@ import htmlString from "./current-forecast-widget.html";
 import "./current-forecast-widget.css";
 import DomUtility from "../../utilities/DomUtility";
 import WeatherIcons from "../../res/weather-icons";
+import EventBus from "../../utilities/EventBus";
+import MathUtility from "../../utilities/MathUtility";
 
 export default class CurrentForecastWidget {
   #container;
   #element;
   #weatherData;
   #fields;
-  
+
   constructor(container, dailyWeatherData) {
     this.#container = container;
     this.#element = DomUtility.stringToHTML(htmlString);
@@ -16,6 +18,8 @@ export default class CurrentForecastWidget {
     this.#weatherData = dailyWeatherData;
     this.setData();
     this.render();
+
+    EventBus.on("updatePreferredUnit", () => this.setTemperatureData());
   }
 
   cacheFields() {
@@ -54,11 +58,24 @@ export default class CurrentForecastWidget {
   }
 
   setTemperatureData() {
+    const tempF = this.#weatherData.temp;
+    const feelsLikeF = this.#weatherData.feelslike;
+
+    const temperature =
+      localStorage.getItem("userPrefferedUnit") === "c"
+        ? MathUtility.fahrenheitToCelsius(tempF)
+        : tempF;
+
+    const feelsLike =
+      localStorage.getItem("userPrefferedUnit") === "c"
+        ? MathUtility.fahrenheitToCelsius(feelsLikeF)
+        : feelsLikeF;
+
     this.#fields.temperature.querySelector(".current").textContent =
-      `${this.#weatherData.temp}°${localStorage.getItem("userPrefferedUnit").toUpperCase()}`;
+      `${Math.round(temperature)}°${localStorage.getItem("userPrefferedUnit").toUpperCase()}`;
 
     this.#fields.temperature.querySelector(".feels-like").textContent =
-      `Feels like: ${this.#weatherData.feelslike}°${localStorage.getItem("userPrefferedUnit").toUpperCase()}`;
+      `Feels like: ${Math.round(feelsLike)}°${localStorage.getItem("userPrefferedUnit").toUpperCase()}`;
   }
 
   setSunsetData() {
@@ -85,7 +102,11 @@ export default class CurrentForecastWidget {
   }
 
   setWeatherIcon() {
-    this.#fields.icon.querySelector("img").replaceWith(DomUtility.loadAnimatedWeatherIcon(`${this.#weatherData.icon}`));
+    this.#fields.icon
+      .querySelector("img")
+      .replaceWith(
+        DomUtility.loadAnimatedWeatherIcon(`${this.#weatherData.icon}`),
+      );
   }
 
   setData() {
