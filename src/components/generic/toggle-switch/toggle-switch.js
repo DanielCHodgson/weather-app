@@ -18,11 +18,9 @@ export default class ToggleSwitch {
   }
 
   render() {
-  
     if (this.#labelElement) {
       if (typeof this.#label !== "undefined" && this.#label !== null) {
         this.#labelElement.textContent = this.#label;
-        console.log(this.#label);
       } else {
         this.#labelElement.remove();
       }
@@ -31,10 +29,17 @@ export default class ToggleSwitch {
     this.#container.appendChild(this.#element);
   }
 
+  check() {
+    this.#element.querySelector("input").checked = "true";
+  }
+
+  uncheck() {
+    this.#element.querySelector("input").checked = "false";
+  }
+
   getElement() {
     return this.#element;
   }
-
 
   setLabelText(value) {
     this.#labelElement.textContent = value;

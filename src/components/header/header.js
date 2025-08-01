@@ -10,48 +10,48 @@ export default class Header {
   #container;
   #element;
   #weatherForm;
-  #toggleSwitch;
-  #toggleElement;
+  #degreeUnitToggle;
 
   constructor(dashboard, container) {
     this.#dashboard = dashboard;
     this.#container = container;
     this.#element = DomUtility.stringToHTML(html);
     this.#weatherForm = new WeatherForm(this.#element);
-    this.#toggleSwitch = this.#createToggleSwitch();
-    this.#toggleElement = this.#toggleSwitch.getElement();
+    this.#degreeUnitToggle = this.#createToggleSwitch();
+
     this.#bindEvents();
     this.render();
 
     EventBus.on("updatePreferredUnit", () =>
-      this.#toggleSwitch.setLabelText(
+      this.#degreeUnitToggle.setLabelText(
         `°${localStorage.getItem("userPrefferedUnit").toUpperCase()}`,
       ),
     );
   }
 
   #createToggleSwitch() {
-    const preferredUnit =
-      localStorage.getItem("userPrefferedUnit") === null
-        ? `°C`
-        : localStorage.getItem("userPrefferedUnit").toUpperCase();
+    const preferredUnit = localStorage.getItem("userPrefferedUnit");
 
-    return new ToggleSwitch(this.#element, preferredUnit);
+    const preferredUnitLabel =
+      preferredUnit === null
+        ? `°C`
+        : `°${localStorage.getItem("userPrefferedUnit").toUpperCase()}`;
+
+    const toggle = new ToggleSwitch(this.#element, preferredUnitLabel);
+    if (preferredUnit === "c") toggle.check();
+
+    return toggle;
   }
 
   #bindEvents() {
-    const isChecked = this.#toggleElement.querySelector("input").checked;
-
-    this.#toggleElement.addEventListener("click", () =>
-      this.#handleUnitToggleClick(isChecked),
-    );
+    this.#degreeUnitToggle
+      .getElement()
+      .querySelector("input")
+      .addEventListener("click", () => this.#handleUnitToggleClick());
   }
 
-  #handleUnitToggleClick(isChecked) {
-
-    console.log(isChecked)
-
-    isChecked
+  #handleUnitToggleClick() {
+    localStorage.getItem("userPrefferedUnit") === "c"
       ? localStorage.setItem("userPrefferedUnit", "f")
       : localStorage.setItem("userPrefferedUnit", "c");
 

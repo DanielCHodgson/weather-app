@@ -8,9 +8,7 @@ export default class CurrentForecastWidget {
   #element;
   #weatherData;
   #fields;
-  #degreesUnit = 'F';
   
-
   constructor(container, dailyWeatherData) {
     this.#container = container;
     this.#element = DomUtility.stringToHTML(htmlString);
@@ -57,10 +55,10 @@ export default class CurrentForecastWidget {
 
   setTemperatureData() {
     this.#fields.temperature.querySelector(".current").textContent =
-      `${this.#weatherData.temp}°${this.#degreesUnit}`;
+      `${this.#weatherData.temp}°${localStorage.getItem("userPrefferedUnit").toUpperCase()}`;
 
     this.#fields.temperature.querySelector(".feels-like").textContent =
-      `Feels like: ${this.#weatherData.feelslike}°${this.#degreesUnit}`;
+      `Feels like: ${this.#weatherData.feelslike}°${localStorage.getItem("userPrefferedUnit").toUpperCase()}`;
   }
 
   setSunsetData() {
